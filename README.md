@@ -1,0 +1,2 @@
+# elastic-sandbox
+Elasticsearch sandbox
