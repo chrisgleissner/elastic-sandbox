@@ -1,5 +1,6 @@
 package com.github.chrisgleissner.elastic.spring.book;
 
+import com.github.chrisgleissner.elastic.spring.IndexNames;
 import com.github.chrisgleissner.elastic.spring.fixture.AbstractElasticIT;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
@@ -81,9 +82,9 @@ class BookIT extends AbstractElasticIT {
 
     @BeforeAll
     void setup() {
-        getFixture().updateIndexConfig(Book.class, Book.INDEX_NAME);
+        getFixture().updateIndexConfig(Book.class, IndexNames.book);
         bookRepo.saveAll(BOOKS);
-        getFixture().logIndexMapping(Book.INDEX_NAME);
+        getFixture().logIndexMapping(IndexNames.book);
     }
 
     @AfterAll
