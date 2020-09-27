@@ -11,7 +11,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public abstract class AbstractElasticIT {
     @Container private static final ElasticContainer container = new ElasticContainer();
     @Getter private static ElasticFixture fixture;
