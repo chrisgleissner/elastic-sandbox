@@ -1,5 +1,6 @@
 package com.github.chrisgleissner.elastic.spring.fixture;
 
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 public class ElasticContainer extends ElasticsearchContainer {
@@ -12,5 +13,6 @@ public class ElasticContainer extends ElasticsearchContainer {
         this.addFixedExposedPort(DEFAULT_PORT, DEFAULT_PORT);
         this.addFixedExposedPort(DEFAULT_TCP_PORT, DEFAULT_TCP_PORT);
         this.addEnv("cluster.name", "elasticsearch");
+        this.waitingFor(Wait.forListeningPort());
     }
 }

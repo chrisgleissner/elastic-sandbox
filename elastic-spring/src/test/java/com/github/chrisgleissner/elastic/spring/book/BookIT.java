@@ -5,15 +5,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.*;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.AUTHOR1;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.AUTHOR2_UNIQUE_STRING;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.AUTHOR_COMMON_PREFIX;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.BOOK1;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.BOOK2;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.BOOK3;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.BOOKS;
+import static com.github.chrisgleissner.elastic.spring.book.BookIT.TestData.NAME_COMMON_PREFIX;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS) @Slf4j
+@Slf4j
 class BookIT extends AbstractElasticIT {
     @Autowired private BookRepo bookRepo;
     @Autowired private CustomBookRepo customBookRepo;
