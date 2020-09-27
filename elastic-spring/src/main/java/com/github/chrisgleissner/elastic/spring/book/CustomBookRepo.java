@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -24,7 +24,7 @@ public class CustomBookRepo {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         Optional.ofNullable(name).ifPresent(n -> boolQueryBuilder.filter(QueryBuilders.wildcardQuery(Book.NAME, n)));
         Optional.ofNullable(author).ifPresent(a -> boolQueryBuilder.filter(QueryBuilders.wildcardQuery(Book.AUTHOR, a)));
-        Query query = new NativeSearchQuery(boolQueryBuilder).setPageable(Pageable.unpaged());
+        Query query = new NativeSearchQuery(boolQueryBuilder).setPageable(PageRequest.of(0, 10));
         SearchHits<Book> hits = restTemplate.search(query, Book.class);
         List<Book> books = hits.get().map(SearchHit::getContent).collect(Collectors.toList());
         log.info("findByNameAndAuthorWithWildcards(name={}, author={}) found {} hit(s): hits={}, books={}",
