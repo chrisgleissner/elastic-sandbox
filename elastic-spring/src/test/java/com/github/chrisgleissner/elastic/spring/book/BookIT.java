@@ -15,8 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) @Slf4j
 class BookIT extends AbstractElasticIT {
-    @Autowired BookRepo bookRepo;
-    @Autowired CustomBookRepo customBookRepo;
+    @Autowired private BookRepo bookRepo;
+    @Autowired private CustomBookRepo customBookRepo;
 
     @Test
     void findByAuthor() {
