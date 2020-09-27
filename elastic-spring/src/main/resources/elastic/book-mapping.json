@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "year": {
+      "type": "int"
+    },
+    "author": {
+      "type": "keyword"
+    },
+    "isbn": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "keyword"
+    }
+  }
+}

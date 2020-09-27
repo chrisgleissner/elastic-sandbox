@@ -5,3 +5,4 @@ logging:
     org.elasticsearch: DEBUG
     org.elasticsearch.client: TRACE
     org.springframework.data.elasticsearch: DEBUG
+    org.springframework.data.elasticsearch.client.WIRE: trace

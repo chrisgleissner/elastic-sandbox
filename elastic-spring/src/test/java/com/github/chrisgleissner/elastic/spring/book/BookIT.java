@@ -1,15 +1,19 @@
 package com.github.chrisgleissner.elastic.spring.book;
 
 import com.github.chrisgleissner.elastic.spring.fixture.AbstractElasticIT;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) @Slf4j
 class BookIT extends AbstractElasticIT {
     public static final String ISBN1 = "11";
     public static final String ISBN2 = "12";
@@ -32,11 +36,14 @@ class BookIT extends AbstractElasticIT {
     private static final Book BOOK2 = new Book(ISBN2, NAME2, AUTHOR1, PUBLICATION_YEAR_2);
     private static final Book BOOK3 = new Book(ISBN3, NAME3, AUTHOR2, PUBLICATION_YEAR_3);
 
+    @Autowired ElasticsearchRestTemplate restTemplate;
     @Autowired BookRepo bookRepo;
     @Autowired CustomBookRepo customBookRepo;
 
-    @BeforeEach
+    @BeforeAll
     void setup() {
+        getFixture().updateIndexConfig(Book.class, Book.INDEX_NAME);
+
         bookRepo.saveAll(List.of(
                 // Written by joe doe:
                 BOOK1, // book name 11, 2001
@@ -44,9 +51,10 @@ class BookIT extends AbstractElasticIT {
                 // Written by joe don doe:
                 BOOK3 // book name21, 2003
         ));
+        getFixture().logIndexMapping(Book.INDEX_NAME);
     }
 
-    @AfterEach
+    @AfterAll
     void tearDown() {
         bookRepo.deleteAll();
     }
@@ -57,8 +65,8 @@ class BookIT extends AbstractElasticIT {
     }
 
     @Test
-    void findByAuthorContaining() {
-        assertThat(bookRepo.findByAuthor(AUTHOR_COMMON_PREFIX)).containsExactly(BOOK1, BOOK2, BOOK3);
+    void findByAuthorStartingWithPrefix() {
+        assertThat(bookRepo.findByAuthorStartingWith(AUTHOR_COMMON_PREFIX)).containsExactly(BOOK1, BOOK2, BOOK3);
     }
 
     @Test
