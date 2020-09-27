@@ -4,8 +4,6 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202008-01
-    #docker:
-    #  - image: circleci/openjdk:11-jdk
     steps:
       - checkout
       - run: cd elastic-spring && ./mvnw clean install
