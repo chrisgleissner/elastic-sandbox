@@ -1,16 +1,19 @@
 {
   "properties": {
-    "year": {
-      "type": "int"
+    "name": {
+      "type": "wildcard",
+      "fields": {
+        "text": {
+          "store": true,
+          "type": "text"
+        }
+      }
     },
     "author": {
-      "type": "keyword"
+      "type": "wildcard"
     },
-    "isbn": {
-      "type": "keyword"
-    },
-    "name": {
-      "type": "keyword"
+    "year": {
+      "type": "integer"
     }
   }
 }

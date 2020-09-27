@@ -8,6 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.InnerField;
+import org.springframework.data.elasticsearch.annotations.Mapping;
 import org.springframework.data.elasticsearch.annotations.MultiField;
 import org.springframework.data.elasticsearch.annotations.Setting;
 
@@ -17,7 +18,7 @@ import static com.github.chrisgleissner.elastic.spring.book.Book.INDEX_NAME;
 @Document(indexName = INDEX_NAME)
 @Setting(settingPath = "/elastic/book-setting.json")
 // Alternative for annotation-based index mapping
-//@Mapping(mappingPath = "/elastic/book-mapping.json")
+@Mapping(mappingPath = "/elastic/book-mapping.json")
 public class Book {
     public static final String INDEX_NAME = "book";
 
