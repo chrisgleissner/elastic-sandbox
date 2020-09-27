@@ -17,13 +17,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ElasticFixture {
     @Getter private final RestHighLevelClient client;
-    private RequestOptions requestOptions = RequestOptions.DEFAULT;
+    @Getter private RequestOptions requestOptions = RequestOptions.DEFAULT;
 
     public ElasticFixture(ElasticsearchContainer container) {
         this.client = new RestHighLevelClient(RestClient.builder(HttpHost.create(container.getHttpHostAddress())));
     }
 
-    public ElasticFixture requestOptions(RequestOptions requestOptions) {
+    public ElasticFixture withRequestOptions(RequestOptions requestOptions) {
         this.requestOptions = requestOptions;
         return this;
     }

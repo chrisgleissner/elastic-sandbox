@@ -11,6 +11,7 @@ public class ElasticContainer extends ElasticsearchContainer {
 
     public ElasticContainer() {
         super(ELASTIC_SEARCH_DOCKER);
+        this.addEnv("xpack.license.self_generated.type", "basic");
         this.addFixedExposedPort(DEFAULT_PORT, DEFAULT_PORT);
         this.addFixedExposedPort(DEFAULT_TCP_PORT, DEFAULT_TCP_PORT);
         this.addEnv(CLUSTER_NAME, ELASTIC_SEARCH);
