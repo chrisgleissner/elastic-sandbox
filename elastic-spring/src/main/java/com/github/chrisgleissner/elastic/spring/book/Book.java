@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Setting;
 
 @Value @NoArgsConstructor(force = true) @AllArgsConstructor
 @Document(indexName = "#{T(com.github.chrisgleissner.elastic.spring.IndexNames).book}")
-@Setting(settingPath = "/elastic/book-setting.json")
+@Setting(settingPath = "/elastic/book-settings.json")
 @Mapping(mappingPath = "/elastic/book-mapping.json")
 public class Book {
     public static final String ISBN = "isbn";
